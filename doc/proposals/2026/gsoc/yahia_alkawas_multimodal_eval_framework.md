@@ -13,9 +13,17 @@ This project aims to develop an end-to-end evaluation framework within API Dash 
 * **Execution:** Utilizing Python's `subprocess` for background tasks and **Server-Sent Events (SSE)** for real-time log streaming to minimize user dependencies.
 
 ## Implementation Milestones (350 Hours)
-* **Phase 1 (Weeks 1-4):** Designing unified TypeScript interfaces for multimodal data contracts and setting up the core Python benchmarking wrapper.
-* **Phase 2 (Weeks 5-8):** Building the UI configuration suite for Voice and Image request parameters.
-* **Phase 3 (Weeks 9-12):** Implementing AI Agent session-state tracking and final reporting exports.
+* **Week 1-2 (Community Bonding): Finalize API contracts and refine the MCP integration.
+
+* **Week 3-4 (Core Infrastructure): Implement the Async Evaluation Runner and SSE transport layer.
+
+* **Week 5-6 (Multimodal Parsers): Build the specialized handlers for Audio/Video/PDF.
+
+* **Week 7 (Midterm): Deliver a fully functional end-to-end prototype.
+
+* **Week 8-10 (Testing & Edge Cases): Write 80%+ coverage unit tests and handle "large file" streaming issues.
+
+* **Week 11-12 (Documentation): Write a full developer guide and a "How to add a new model" tutorial.
 
 ## Experience
 As a CS student at Cairo University and a security researcher at HackerOne, I have extensive experience building scalable, secure Full-Stack applications using Node.js, React, and Python.
@@ -35,3 +43,24 @@ To demonstrate the feasibility of the real-time streaming architecture, I have d
 ​Standardized Tooling: "I will utilize MCP to standardize how the evaluation framework connects to external 'Multimodal Tools' (e.g., Vision-to-Text APIs, Audio Analysis tools)."
 ​Agentic Testing: "By implementing an MCP-compatible server, the framework will be able to evaluate not just model outputs, but also the accuracy of tool-calls made by Agentic AI models."
 ​Interoperability: "This ensures that any MCP-compatible model or agent can be plugged into the API Dash evaluation pipeline without custom glue code."
+
+## Functional Requirements (The "What")
+Real-time Streaming: The system must push evaluation logs to the UI with less than 200ms latency using SSE.
+
+Multimodal Support: The framework must support rendering and evaluating Image (PNG/JPG), Audio (MP3/WAV), Video (MP4), and Document (PDF) formats.
+
+Model Comparison: Users should be able to trigger the same evaluation against two different models simultaneously for benchmarking.
+
+Asset Management: The system must securely fetch assets from both local paths and remote URLs.
+
+## Non-Functional Requirements (The "How")
+Security (Sandboxing): All multimodal assets must be rendered within a sandboxed environment to prevent XSS attacks.
+
+Extensibility: The architecture must allow adding new media types (e.g., 3D models) by only updating the MediaDispatcher.
+
+Reliability: The backend must handle subprocess failures gracefully without crashing the main API thread.
+
+Ease of Setup: The project must be containerized using Docker to ensure a "one-command" setup for other contributors.
+
+## The Architecture Diagram:
+https://drive.google.com/file/d/1OM71McSuhDZ3f_VWvAS1MPakyd1s4wKb/view?usp=drive_link
