@@ -13,17 +13,17 @@ This project aims to develop an end-to-end evaluation framework within API Dash 
 * **Execution:** Utilizing Python's `subprocess` for background tasks and **Server-Sent Events (SSE)** for real-time log streaming to minimize user dependencies.
 
 ## Implementation Milestones (350 Hours)
-* **Week 1-2 (Community Bonding): Finalize API contracts and refine the MCP integration.
+* Week 1-2 (Community Bonding): Finalize API contracts and refine the MCP integration.
 
-* **Week 3-4 (Core Infrastructure): Implement the Async Evaluation Runner and SSE transport layer.
+* Week 3-4 (Core Infrastructure): Implement the Async Evaluation Runner and SSE transport layer.
 
-* **Week 5-6 (Multimodal Parsers): Build the specialized handlers for Audio/Video/PDF.
+* Week 5-6 (Multimodal Parsers): Build the specialized handlers for Audio/Video/PDF.
 
-* **Week 7 (Midterm): Deliver a fully functional end-to-end prototype.
+* Week 7 (Midterm): Deliver a fully functional end-to-end prototype.
 
-* **Week 8-10 (Testing & Edge Cases): Write 80%+ coverage unit tests and handle "large file" streaming issues.
+* Week 8-10 (Testing & Edge Cases): Write 80%+ coverage unit tests and handle "large file" streaming issues.
 
-* **Week 11-12 (Documentation): Write a full developer guide and a "How to add a new model" tutorial.
+* Week 11-12 (Documentation): Write a full developer guide and a "How to add a new model" tutorial.
 
 ## Experience
 As a CS student at Cairo University and a security researcher at HackerOne, I have extensive experience building scalable, secure Full-Stack applications using Node.js, React, and Python.
