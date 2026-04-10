@@ -12,7 +12,7 @@ This project aims to develop an end-to-end evaluation framework within API Dash 
 * **Backend (Python):** A robust bridge to tools like `lm-harness` and `lighteval`.
 * **Execution:** Utilizing Python's `subprocess` for background tasks and **Server-Sent Events (SSE)** for real-time log streaming to minimize user dependencies.
 
-## Implementation Milestones (350 Hours)
+## Detailed 12-Week Timeline (350 Hours)
 * Week 1-2 (Community Bonding): Finalize API contracts and refine the MCP integration.
 
 * Week 3-4 (Core Infrastructure): Implement the Async Evaluation Runner and SSE transport layer.
@@ -64,3 +64,14 @@ Ease of Setup: The project must be containerized using Docker to ensure a "one-c
 
 ## The Architecture Diagram:
 https://drive.google.com/file/d/1OM71McSuhDZ3f_VWvAS1MPakyd1s4wKb/view?usp=drive_link
+
+## Security & Robustness
+How I will handle:
+Network drops: By Implementing a client-side buffer for SSE.
+Large Payloads: By Using Blob URLs instead of Base64 for videos to save browser memory.
+
+## Testing:
+* Pytest for the backend logic.
+* Vitest/Playwright for the UI.
+* Mocking: How you will test the framework without spending money on expensive AI API calls (using Mock LLM responses).
+
