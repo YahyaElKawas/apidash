@@ -2,7 +2,7 @@
 
 * **Candidate:** Yahia (Yaya) Alkawas 
 * **Project:** #2 - Multimodal AI and Agent API Eval Framework
-* **Mentor:** animator
+* **Mentor:** Ankit & Ashita
 
 ## Abstract
 This project aims to develop an end-to-end evaluation framework within API Dash to benchmark Text, Image, and Voice AI models and Agents. The architecture focuses on a "dependency-lite" approach, ensuring the framework is easy to install for end-users while providing a professional, real-time benchmarking experience.
@@ -75,3 +75,5 @@ Large Payloads: By Using Blob URLs instead of Base64 for videos to save browser 
 * Vitest/Playwright for the UI.
 * Mocking: How you will test the framework without spending money on expensive AI API calls (using Mock LLM responses).
 
+## Implementation Strategy:
+To ensure project maintainability across different operating systems (Windows/macOS/Linux), I will include a .gitignore that excludes environment-specific folders and provide a requirements.txt for consistent dependency resolution. I have already validated the setup on Windows, ensuring that the FastAPI backend and React frontend can be launched with minimal environment friction.
