@@ -5,12 +5,27 @@
 * **Mentor:** Ankit & Ashita
 
 ## Abstract
-This project aims to develop an end-to-end evaluation framework within API Dash to benchmark Text, Image, and Voice AI models and Agents. The architecture focuses on a "dependency-lite" approach, ensuring the framework is easy to install for end-users while providing a professional, real-time benchmarking experience.
+This project delivers a real-time, dependency-light evaluation framework for multimodal and agentic AI systems inside API Dash. Current evaluation tooling is fragmented, batch-oriented, and difficult to integrate. This project unifies text, image, audio, and agent evaluation into a single streaming interface with <200ms latency, enabling developers to benchmark models and tool-using agents in real time. Success will be measured by full multimodal support, dual-model benchmarking, and seamless integration via MCP-compatible interfaces.
 
 ## Proposed Architecture
 * **Frontend (React/TypeScript):** A dynamic UI for configuring request parameters and visualizing multimodal results.
 * **Backend (Python):** A robust bridge to tools like `lm-harness` and `lighteval`.
 * **Execution:** Utilizing Python's `subprocess` for background tasks and **Server-Sent Events (SSE)** for real-time log streaming to minimize user dependencies.
+
+## Design Decisions & Tradeoffs
+SSE vs WebSockets: Chose SSE for simplicity, lower overhead, and one-way streaming fit.
+Subprocess vs Task Queue (Celery/Redis): Avoided heavy infra to maintain “dependency-lite” goal.
+Blob URLs vs Base64: Prevents memory bloat for large assets.
+
+## Evaluation Metrics
+Text: Accuracy, BLEU / semantic similarity
+Image: Caption relevance / CLIP score
+Audio: Transcription accuracy (WER)
+Agents:
+Tool-call accuracy
+Task completion success rate
+Latency per step
+
 
 ## Detailed 12-Week Timeline (350 Hours)
 * Week 1-2 (Community Bonding): Finalize API contracts and refine the MCP integration.
