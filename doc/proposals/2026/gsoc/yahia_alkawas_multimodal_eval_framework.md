@@ -1,6 +1,8 @@
 ## GSoC 2026 Proposal: Multimodal AI and Agent API Eval Framework
 Candidate: Yahia (Yaya) Alkawas
+
 Project: #2 - Multimodal AI and Agent API Eval Framework
+
 Mentors: Ankit & Ashita
 
 ## Abstract
