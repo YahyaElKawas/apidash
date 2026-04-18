@@ -1,94 +1,186 @@
-# GSoC 2026 Proposal: Multimodal AI and Agent API Eval Framework
-
-* **Candidate:** Yahia (Yaya) Alkawas 
-* **Project:** #2 - Multimodal AI and Agent API Eval Framework
-* **Mentor:** Ankit & Ashita
+* **GSoC 2026 Proposal: Multimodal AI and Agent API Eval Framework**
+Candidate: Yahia (Yaya) Alkawas
+Project: #2 - Multimodal AI and Agent API Eval Framework
+Mentors: Ankit & Ashita
 
 ## Abstract
-This project delivers a real-time, dependency-light evaluation framework for multimodal and agentic AI systems inside API Dash. Current evaluation tooling is fragmented, batch-oriented, and difficult to integrate. This project unifies text, image, audio, and agent evaluation into a single streaming interface with <200ms latency, enabling developers to benchmark models and tool-using agents in real time. Success will be measured by full multimodal support, dual-model benchmarking, and seamless integration via MCP-compatible interfaces.
+This project aims to deliver a real-time, dependency-light evaluation framework for multimodal and agentic AI systems within API Dash. Existing evaluation tools are often fragmented, batch-oriented, and difficult to integrate into developer workflows. This project unifies text, image, audio, video, and agent evaluation into a single streaming interface, enabling developers to benchmark models and tool-using agents in real time.
+The framework will provide live evaluation logs with <200ms latency, side-by-side model comparison, and seamless integration via MCP-compatible interfaces. Success will be measured by complete multimodal support, real-time streaming performance, and extensible architecture for future model and modality additions.
 
 ## Proposed Architecture
-* **Frontend (React/TypeScript):** A dynamic UI for configuring request parameters and visualizing multimodal results.
-* **Backend (Python):** A robust bridge to tools like `lm-harness` and `lighteval`.
-* **Execution:** Utilizing Python's `subprocess` for background tasks and **Server-Sent Events (SSE)** for real-time log streaming to minimize user dependencies.
+Core Components
+Frontend (React / TypeScript):
+Interactive UI for configuring evaluation tasks, visualizing multimodal outputs, and streaming real-time logs.
+Backend (Python / FastAPI):
+Evaluation orchestrator integrating tools such as lm-harness and lighteval.
+Execution Layer:
+Python subprocess-based runner for evaluation tasks, combined with Server-Sent Events (SSE) for real-time streaming.
 
 ## Design Decisions & Tradeoffs
-SSE vs WebSockets: Chose SSE for simplicity, lower overhead, and one-way streaming fit.
-Subprocess vs Task Queue (Celery/Redis): Avoided heavy infra to maintain “dependency-lite” goal.
-Blob URLs vs Base64: Prevents memory bloat for large assets.
+SSE vs WebSockets:
+SSE is chosen for its simplicity, lower overhead, and suitability for one-way streaming of evaluation logs.
+Subprocess vs Task Queue (Celery/Redis):
+A subprocess-based approach avoids heavy infrastructure dependencies, aligning with the “dependency-lite” goal.
+Blob URLs vs Base64:
+Blob URLs are used for large media to reduce browser memory usage and improve performance.
+
+## MCP Alignment Architecture
+Standardized Tooling:
+The framework will use MCP to standardize connections to external multimodal tools (e.g., vision APIs, speech models).
+Agentic Evaluation:
+The system will evaluate not only model outputs but also tool-calling behavior of agentic systems.
+Interoperability:
+Any MCP-compatible model or agent can be integrated without custom glue code.
+
+Example Agent Evaluation Flow:
+
+Capture tool calls via MCP interface
+Validate correctness of tool selection
+Compare expected vs actual outputs
+Score both reasoning and execution
+
+## Functional Requirements
+Real-time Streaming:
+Evaluation logs must be streamed to the UI with <200ms latency using SSE.
+Multimodal Support:
+Support rendering and evaluation of:
+Images (PNG, JPG)
+Audio (MP3, WAV)
+Video (MP4)
+Documents (PDF)
+Model Comparison:
+Support side-by-side evaluation of at least two models with synchronized inputs and unified scoring output.
+Asset Management:
+Support local files up to 100MB and remote URLs with streaming fetch.
+
+## Non-Functional Requirements
+Security:
+Sandboxed rendering of all multimodal outputs
+MIME validation and file-type enforcement
+Sanitization of model outputs to prevent XSS
+Extensibility:
+New media types can be added via modular MediaDispatcher updates.
+Reliability:
+Subprocess failures must be isolated and handled gracefully.
+Ease of Setup:
+Docker-based “one-command” setup for contributors.
+
 
 ## Evaluation Metrics
-Text: Accuracy, BLEU / semantic similarity
-Image: Caption relevance / CLIP score
-Audio: Transcription accuracy (WER)
-Agents:
+Text Models:
+Accuracy, semantic similarity, BLEU-like metrics
+Image Models:
+Caption relevance and embedding similarity (e.g., CLIP-based scoring)
+Audio Models:
+Transcription accuracy using Word Error Rate (WER)
+Agentic Systems:
 Tool-call accuracy
 Task completion success rate
-Latency per step
+Step-wise latency
+
+
+## Security & Abuse Prevention
+
+Given my background in security research, I will ensure:
+
+Isolation of rendered content using sandboxed environments
+Validation of all user-provided and remote assets
+Rate limiting for evaluation endpoints
+Protection against prompt injection affecting agent evaluation
+Safe handling of untrusted model outputs
+
+
+## Proof of Concept (PoC)
+Link: 
+
+## 🚀 Technical Highlights on the PoC
+Real-time streaming pipeline using FastAPI + SSE for incremental evaluation outputs
+Multimodal support (image, audio, video, PDF) in a unified framework
+Event observability with UUIDs and timestamps for traceability
+Model-agnostic design enabling easy integration with different AI systems
+Interactive React dashboard with real-time visualization, progress tracking, and structured outputs
+Robust media handling (images, audio/video playback, PDF rendering with fallback)
+Advanced testing strategy covering streaming, schema validation, UI updates, and performance
+Configurable latency for realistic demos and fast, deterministic tests
 
 
 ## Detailed 12-Week Timeline (350 Hours)
-* Week 1-2 (Community Bonding): Finalize API contracts and refine the MCP integration.
+* **Week 1–2 (Community Bonding)**
+Finalized API contracts and data schemas
+Defined evaluation pipeline interfaces
+Completed MCP integration design
+Set up development environment and contribution workflow
 
-* Week 3-4 (Core Infrastructure): Implement the Async Evaluation Runner and SSE transport layer.
+* **Week 3–4 (Core Infrastructure)**
+Implemented async evaluation runner supporting concurrent jobs
+Built SSE streaming system with reconnect support
+Integrated subprocess execution with structured logging
+Delivered CLI-based evaluation test harness
 
-* Week 5-6 (Multimodal Parsers): Build the specialized handlers for Audio/Video/PDF.
+* **Week 5–6 (Multimodal Support)**
+Implemented media handlers for Image, Audio, Video, and PDF
+Built frontend rendering components for each modality
+Integrated streaming asset loading for large files
+Delivered working multimodal evaluation pipeline
 
-* Week 7 (Midterm): Deliver a fully functional end-to-end prototype.
+* **Week 7 (Midterm Deliverable)**
+End-to-end system:
+Text + Image evaluation working
+Real-time logs visible in UI
+Single-model evaluation fully functional
+Demonstration of full evaluation workflow
 
-* Week 8-10 (Testing & Edge Cases): Write 80%+ coverage unit tests and handle "large file" streaming issues.
+* **Week 8–9 (Model Comparison & Agent Evaluation)**
+Implemented dual-model comparison pipeline
+Added unified scoring system
+Integrated MCP-based agent evaluation
+Delivered agent tool-call tracking and scoring
 
-* Week 11-12 (Documentation): Write a full developer guide and a "How to add a new model" tutorial.
+* **Week 10 (Performance & Edge Cases)**
+Optimized large file streaming and memory usage
+Implemented retry and failure recovery mechanisms
+Added SSE buffering and reconnection handling
+Benchmarked latency and performance
+
+* **Week 11 (Testing & Stabilization)**
+Achieved ≥80% backend test coverage (Pytest)
+Implemented frontend tests (Vitest / Playwright)
+Added mock evaluation system to avoid API costs
+Fixed edge cases and ensured system stability
+
+* **Week 12 (Documentation & Finalization)**
+Wrote developer documentation
+Created “How to add a new model” guide
+Documented architecture and extension points
+Delivered final demo and contributor onboarding guide
+
+## Testing Strategy
+Backend: Pytest with unit and integration tests
+Frontend: Vitest and Playwright
+Mocking: Simulated LLM responses to avoid API costs
+Performance Testing: Evaluate streaming latency and load handling
+
+## Risks & Mitigation
+Large file bottlenecks:
+Use chunked streaming and progressive rendering
+Model API instability:
+Implement retry strategies and fallback mocks
+SSE connection drops:
+Auto-reconnect with buffered state recovery
+Scope complexity:
+Deliver features incrementally (text → image → full multimodal)
+
+## Final Deliverables
+Fully integrated multimodal evaluation framework in API Dash
+Real-time streaming UI with terminal-style logs
+MCP-compatible agent evaluation support
+Dual-model benchmarking system
+≥80% test coverage (frontend + backend)
+Complete documentation and contributor guides
+End-to-end demo showcasing framework capabilities
 
 ## Experience
-As a CS student at Cairo University and a security researcher at HackerOne, I have extensive experience building scalable, secure Full-Stack applications using Node.js, React, and Python.
+I am a Computer Science student at Cairo University and preveiuly an active security researcher on HackerOne, where I have reported multiple vulnerabilities including logic flaws and input validation issues. I have experience building full-stack applications using React, Node.js, and Python, along with integrating APIs and designing testing pipelines. Also I have built ai projects during my study at Cairo University, This background directly aligns with building a secure, scalable, and extensible evaluation framework.
 
-## 🚀 Proof of Concept (PoC)
-
-To demonstrate the feasibility of the real-time streaming architecture, I have developed a functional Proof of Concept. This PoC integrates the FastAPI backend with the React frontend to handle live execution logs.
-
-**[▶️ Watch the PoC Demo Video on Google Drive](https://drive.google.com/file/d/1yU1CVqcSTt9s4fWjEeRO6JzHmB7sXRpY/view?usp=drive_link)**
-
-### **Technical Highlights of the PoC:**
-* **Real-Time Streaming:** Implemented **Server-Sent Events (SSE)** using FastAPI’s `StreamingResponse` to pipe live output from a Python subprocess directly to the UI.
-* **Terminal UI Component:** Developed a custom React/TypeScript terminal component that handles high-frequency data updates with 0% to 100% progress tracking.
-* **Architecture:** Proves the "dependency-lite" approach by avoiding heavy message brokers like Redis, ensuring the framework remains lightweight and portable.
-
-### MCP Alignment Architecture
-​Standardized Tooling: "I will utilize MCP to standardize how the evaluation framework connects to external 'Multimodal Tools' (e.g., Vision-to-Text APIs, Audio Analysis tools)."
-​Agentic Testing: "By implementing an MCP-compatible server, the framework will be able to evaluate not just model outputs, but also the accuracy of tool-calls made by Agentic AI models."
-​Interoperability: "This ensures that any MCP-compatible model or agent can be plugged into the API Dash evaluation pipeline without custom glue code."
-
-## Functional Requirements (The "What")
-Real-time Streaming: The system must push evaluation logs to the UI with less than 200ms latency using SSE.
-
-Multimodal Support: The framework must support rendering and evaluating Image (PNG/JPG), Audio (MP3/WAV), Video (MP4), and Document (PDF) formats.
-
-Model Comparison: Users should be able to trigger the same evaluation against two different models simultaneously for benchmarking.
-
-Asset Management: The system must securely fetch assets from both local paths and remote URLs.
-
-## Non-Functional Requirements (The "How")
-Security (Sandboxing): All multimodal assets must be rendered within a sandboxed environment to prevent XSS attacks.
-
-Extensibility: The architecture must allow adding new media types (e.g., 3D models) by only updating the MediaDispatcher.
-
-Reliability: The backend must handle subprocess failures gracefully without crashing the main API thread.
-
-Ease of Setup: The project must be containerized using Docker to ensure a "one-command" setup for other contributors.
-
-## The Architecture Diagram:
+## Architecture Diagram
 https://drive.google.com/file/d/1OM71McSuhDZ3f_VWvAS1MPakyd1s4wKb/view?usp=drive_link
-
-## Security & Robustness
-How I will handle:
-Network drops: By Implementing a client-side buffer for SSE.
-Large Payloads: By Using Blob URLs instead of Base64 for videos to save browser memory.
-
-## Testing:
-* Pytest for the backend logic.
-* Vitest/Playwright for the UI.
-* Mocking: How you will test the framework without spending money on expensive AI API calls (using Mock LLM responses).
-
-## Implementation Strategy:
-To ensure project maintainability across different operating systems (Windows/macOS/Linux), I will include a .gitignore that excludes environment-specific folders and provide a requirements.txt for consistent dependency resolution. I have already validated the setup on Windows, ensuring that the FastAPI backend and React frontend can be launched with minimal environment friction.
