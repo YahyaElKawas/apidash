@@ -93,7 +93,7 @@ Safe handling of untrusted model outputs
 
 
 ## Proof of Concept (PoC)
-Link: 
+Link: https://github.com/YahyaElKawas/YahiaElkawas-multimodal-eval-framework
 
 ## 🚀 Technical Highlights on the PoC
 Real-time streaming pipeline using FastAPI + SSE for incremental evaluation outputs
