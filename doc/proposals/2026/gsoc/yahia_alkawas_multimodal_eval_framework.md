@@ -93,8 +93,8 @@ Safe handling of untrusted model outputs
 
 
 ## Proof of Concept (PoC)
-Here it is:
-https://github.com/YahyaElKawas/YahiaElkawas-multimodal-eval-framework](https://github.com/foss42/gsoc-poc/pull/78
+[Here it is]
+([https://github.com/YahyaElKawas/YahiaElkawas-multimodal-eval-framework](https://github.com/foss42/gsoc-poc/pull/78](https://github.com/foss42/gsoc-poc/pull/78))
 
 
 ## 🚀 Technical Highlights on the PoC
@@ -106,6 +106,8 @@ Interactive React dashboard with real-time visualization, progress tracking, and
 Robust media handling (images, audio/video playback, PDF rendering with fallback)
 Advanced testing strategy covering streaming, schema validation, UI updates, and performance
 Configurable latency for realistic demos and fast, deterministic tests
+
+[**Watch the PoC video here on google drive**](https://drive.google.com/file/d/1WtIKGQIpj3g1S5EEe8Pj-8myfXZvzRmZ/view?usp=drive_link&authuser=1)
 
 
 ## Detailed 12-Week Timeline (350 Hours)
