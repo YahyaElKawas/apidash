@@ -93,7 +93,8 @@ Safe handling of untrusted model outputs
 
 
 ## Proof of Concept (PoC)
-[**Link**](https://github.com/YahyaElKawas/YahiaElkawas-multimodal-eval-framework)
+[**My PoC here**]([https://github.com/YahyaElKawas/YahiaElkawas-multimodal-eval-framework](https://github.com/foss42/gsoc-poc/pull/78))
+
 
 ## 🚀 Technical Highlights on the PoC
 Real-time streaming pipeline using FastAPI + SSE for incremental evaluation outputs
@@ -185,4 +186,4 @@ End-to-end demo showcasing framework capabilities
 I am a Computer Science student at Cairo University and preveiuly an active security researcher on HackerOne, where I have reported multiple vulnerabilities including logic flaws and input validation issues. I have experience building full-stack applications using React, Node.js, and Python, along with integrating APIs and designing testing pipelines. Also I have built ai projects during my study at Cairo University, This background directly aligns with building a secure, scalable, and extensible evaluation framework.
 
 ## Architecture Diagram
-https://drive.google.com/file/d/1OM71McSuhDZ3f_VWvAS1MPakyd1s4wKb/view?usp=drive_link
+[Architecture Diagram for the project here](https://drive.google.com/file/d/1OM71McSuhDZ3f_VWvAS1MPakyd1s4wKb/view?usp=drive_link)
