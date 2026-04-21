@@ -93,8 +93,8 @@ Safe handling of untrusted model outputs
 
 
 ## Proof of Concept (PoC)
-[**My PoC here**]
-(https://github.com/YahyaElKawas/YahiaElkawas-multimodal-eval-framework](https://github.com/foss42/gsoc-poc/pull/78)
+Here it is:
+https://github.com/YahyaElKawas/YahiaElkawas-multimodal-eval-framework](https://github.com/foss42/gsoc-poc/pull/78
 
 
 ## 🚀 Technical Highlights on the PoC
