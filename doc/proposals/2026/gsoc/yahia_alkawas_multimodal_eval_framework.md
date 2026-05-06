@@ -94,7 +94,7 @@ Safe handling of untrusted model outputs
 
 ## Proof of Concept (PoC)
 [Here it is]
-(https://github.com/foss42/gsoc-poc/pull/78)
+([https://github.com/foss42/gsoc-poc/pull/78](https://github.com/YahyaElKawas/Multimodal-Ai-Evaluation-Framework-PoC))
 
 
 ## 🚀 Technical Highlights on the PoC
