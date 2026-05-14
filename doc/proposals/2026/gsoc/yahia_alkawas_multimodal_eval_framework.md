@@ -93,7 +93,7 @@ Safe handling of untrusted model outputs
 
 
 ## Proof of Concept (PoC)
-**[Here it is](https://github.com/YahyaElKawas/Multimodal-Ai-Evaluation-Framework-PoC)**
+**[Code base and video with project description](https://github.com/YahyaElKawas/Multimodal-Ai-Evaluation-Framework-PoC)**
 
 
 ## 🚀 Technical Highlights on the PoC
